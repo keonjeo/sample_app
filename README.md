@@ -1,24 +1,39 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Ruby on Rails Tutorial sample application
 
-Things you may want to cover:
+## License
 
-* Ruby version
+  Keon-Ye License, without keon-ye's permission, please don't copy it.
 
-* System dependencies
 
-* Configuration
+## Getting started
 
-* Database creation
 
-* Database initialization
+To get started with the app, clone the repo and then install the needed gems:
 
-* How to run the test suite
+```
+$ bundle install --without production
+```
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+Next, migrate the database:
 
-* ...
+```
+$ rails db:drop db:create db:migrate db:seed
+```
+
+
+Finally, run the test suite to verify that everything is working correctly:
+
+```
+$ rails test
+```
+
+
+If the test suite passes, you'll be ready to run the app in a local server:
+
+```
+$ rails server -b 0.0.0.0 -p 3000
+```
+
