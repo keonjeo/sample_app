@@ -74,25 +74,36 @@ p {
  ******************************************************/
 
 footer {
-    width: 100%;
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-    height: 30px;
-    padding: 4px;
-    background-color: #222;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  left: 0px;
+  height: 30px;
+  padding: 4px;
+  background-color: #222;
 }
 
 footer .footer {
-    width: 800px;
-    margin: 0 auto;
+  width: 800px;
+  margin: 0 auto;
 }
 
 footer span {
-    display: inline-block;
-    width: 100%;
-    text-align: center;
-    color: #CCCCCC;
-    line-height: 23px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  color: #CCCCCC;
+  line-height: 23px;
 }
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
