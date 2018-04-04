@@ -15,8 +15,8 @@
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
 
-      <%= f.label :password_confirmation, 'Confirmation', class: 'form-control' %>
-      <%= f.password_field :password_confirmation %>
+      <%= f.label :password_confirmation, 'Confirmation' %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
 
       <%= f.submit "Create new account", class: "btn btn-primary" %>
     <% end %>
