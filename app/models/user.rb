@@ -23,6 +23,11 @@ class User < ApplicationRecord
     def new_token
       SecureRandom.urlsafe_base64
     end
+
+    # Search bar
+    def search(content)
+      content ? where("email like ?", "%#{content}%") : all
+    end
   end
 
   # 为了持久保存会话，在数据库中记住用户
