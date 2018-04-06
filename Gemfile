@@ -37,6 +37,8 @@ gem 'faker', '~> 1.8'
 
 gem 'will_paginate-bootstrap', '~> 1.0'
 
+gem 'dotenv-rails'        # Secrets management
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -46,6 +48,9 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+
+  # Pretty print your Ruby objects with style -- in full color and with proper indentation
+  gem 'awesome_print', '~> 1.8'
 end
 
 group :development do
