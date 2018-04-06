@@ -56,6 +56,9 @@ group :development, :test do
 
   # Pretty print your Ruby objects with style -- in full color and with proper indentation
   gem 'awesome_print', '~> 1.8'
+
+  ## Find n+1s
+  gem 'bullet', '~> 5.7'
 end
 
 group :development do
