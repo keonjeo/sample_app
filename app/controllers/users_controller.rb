@@ -7,12 +7,13 @@ class UsersController < ApplicationController
   DEFAULT_PER_PAGE = 5
 
   def index
-    @users = User.search(params[:email]).paginate(page: params[:page], per_page: DEFAULT_PER_PAGE)
+    @users = User.activated.search(params[:email]).paginate(page: params[:page], per_page: DEFAULT_PER_PAGE)
   end
 
   def show
     @user = User.find(params[:id])
     # debugger
+    redirect_to root_url and return unless @user.activated?
   end
 
   def new
@@ -23,9 +24,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       # 处理注册成功的情况
-      log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      # log_in @user
+      # flash[:success] = "Welcome to the Sample App!"
+      # redirect_to @user
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_path
     else
       flash[:alert] = "Sorry! Failed to create a new account!"
       render 'new'
