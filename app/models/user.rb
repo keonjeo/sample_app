@@ -1,11 +1,14 @@
 class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
+
+  # Callbacks
   before_save   :downcase_email
   before_create :create_activation_digest
 
   has_secure_password
   # before_save { self.email = email.downcase }
 
+  # Validations
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true,
@@ -14,7 +17,11 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
 
+  # Associations
+  has_many :microposts, dependent: :destroy
 
+
+  # Scopes
   scope :activated, -> { where(activated: true) }
 
   class << self
@@ -82,6 +89,11 @@ class User < ApplicationRecord
   # 如果密码重设请求超时了，返回 true
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  # 实现动态流原型
+  def feed
+    Micropost.where("user_id = ?", id)
   end
 
   private

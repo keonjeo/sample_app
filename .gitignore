@@ -34,3 +34,6 @@ config/database.yml
 
 # Ignore the .env file
 .env
+
+# 忽略上传的测试图像
+public/uploads/*
