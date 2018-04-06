@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user,                   only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user,                   only: [:index, :edit, :update, :destroy, :following, :followers]
   before_action :correct_user,                     only: [:edit, :update]
   before_action :admin_user,                       only: :destroy
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   USER_DEFAULT_PER_PAGE = 5
   MICROPOST_DEFAULT_PER_PAGE = 7
+  FOLLOWING_DEFAULT_PER_PAGE = 7
+  FOLLOWERS_DEFAULT_PER_PAGE = 7
 
   def index
     @users = User.activated.search(params[:email]).paginate(page: params[:page], per_page: USER_DEFAULT_PER_PAGE)
@@ -13,7 +15,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page], per_page: MICROPOST_DEFAULT_PER_PAGE)
+    @microposts = @user.feed_microposts.paginate(page: params[:page], per_page: MICROPOST_DEFAULT_PER_PAGE)
     # debugger
     redirect_to root_url and return unless @user.activated?
   end
@@ -68,6 +70,19 @@ class UsersController < ApplicationController
     end
   end
 
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page], per_page: FOLLOWING_DEFAULT_PER_PAGE)
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page], per_page: FOLLOWERS_DEFAULT_PER_PAGE)
+    render 'show_follow'
+  end
 
   private
 

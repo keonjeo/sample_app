@@ -40,9 +40,9 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
       delete micropost_path(first_micropost)
     end
 
-    # 访问另一个用户的资料页面（没有删除链接）
+    # 访问另一个用户的资料页面（由于存在关注用户也会发微博）
     get user_path(users(:archer))
-    assert_select 'a', text: 'delete', count: 0
+    assert_select 'a', text: 'delete', count: 6
   end
 
   test "micropost sidebar count" do
