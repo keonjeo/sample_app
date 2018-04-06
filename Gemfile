@@ -39,6 +39,11 @@ gem 'will_paginate-bootstrap', '~> 1.0'
 
 gem 'dotenv-rails'        # Secrets management
 
+gem 'carrierwave',             '1.1.0'
+gem 'mini_magick',             '4.7.0'
+gem 'fog-aws',                 '2.0.0'
+gem 'nokogiri'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
